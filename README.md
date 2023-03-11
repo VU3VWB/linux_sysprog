@@ -1,2 +1,2 @@
 # linux_sysprog
-Some linux system programming codes
+Some linux system programming codes in C.
