@@ -1,3 +1,9 @@
+/*
+Kind of stupid code - in the sense that the throughput of pipes are lower than shm. The use of this code is as a skeleton to write more advanced 
+shm codes !
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -9,7 +15,7 @@
 
 #define SHM_FNAME "rbuff"
 #define XFER_SIZE 4096
-#define BUFFDEPTH 512
+#define BUFFDEPTH 2
 
 static volatile int run_var = 1;
 
