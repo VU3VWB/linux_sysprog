@@ -1,5 +1,5 @@
 /*
-Kind of stupid code - in the sense that the throughput of pipes are lower than shm. The use of this code is as a skeleton to write more advanced 
+Kind of stupid code - in the sense that the throughput of pipes is lower than shm. The use of this code is as a skeleton to write more advanced 
 shm codes !
 */
 
