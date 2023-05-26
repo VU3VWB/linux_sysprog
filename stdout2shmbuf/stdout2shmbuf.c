@@ -1,6 +1,10 @@
 /*
 Kind of stupid code - in the sense that the throughput of pipes is lower than shm. The use of this code is as a skeleton to write more advanced 
 shm codes !
+
+For fun, try cat /dev/zero | pv | ./stdout2shmbuf to see how fast this works in a system. The limit will be be from the pipe throughput though, so test 
+cat /dev/zero | pv > /dev/null for comparison :) !
+
 */
 
 
