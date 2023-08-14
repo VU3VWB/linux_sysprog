@@ -19,7 +19,7 @@ cat /dev/zero | pv > /dev/null for comparison :) !
 
 #define SHM_FNAME "rbuff"
 #define XFER_SIZE 4096
-#define BUFFDEPTH 2
+#define BUFFDEPTH 4096
 
 static volatile int run_var = 1;
 
