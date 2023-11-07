@@ -17,18 +17,23 @@ int main()
     {
         printf("Success ! \n");
     }
-    ft4222Status = FT4222_SPIMaster_Init(ftHandle, SPI_IO_DUAL, CLK_DIV_128, CLK_IDLE_LOW, CLK_LEADING, 0x01);
+    ft4222Status = FT4222_SPIMaster_Init(ftHandle, SPI_IO_SINGLE, CLK_DIV_512, CLK_IDLE_LOW, CLK_LEADING, 0x01);
     if (FT4222_OK == ft4222Status)
     {
         printf("Success ! \n");
     }
 
     int n_bytes = 65536;
-    uint8 recvData[n_bytes];
+    uint8 recvData[n_bytes*2];
     uint8 dummy_buffer[10];
-    uint32 sizeTransferred;
-    // ft4222Status = FT4222_SPIMaster_SingleRead(ftHandle, &recvData[0], n_bytes, &sizeTransferred, true);
-    ft4222Status =  FT4222_SPIMaster_MultiReadWrite(ftHandle, &recvData[0], &dummy_buffer[0], 0, 0, n_bytes, &sizeTransferred);
+    uint16 sizeTransferred;
+
+    for (int i=0; i<n_bytes; i++)
+    {
+        ft4222Status = FT4222_SPIMaster_SingleRead(ftHandle, &recvData[i*2], 2, &sizeTransferred, true);
+    }
+
+    // ft4222Status =  FT4222_SPIMaster_MultiReadWrite(ftHandle, &recvData[0], &dummy_buffer[0], 0, 0, n_bytes, &sizeTransferred);
     if (FT4222_OK != ft4222Status)
     {
         printf ("Can't read \n");
