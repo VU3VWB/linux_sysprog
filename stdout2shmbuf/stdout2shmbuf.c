@@ -31,7 +31,7 @@ void inter_handler(int dummy)
 int main()
 {
     int fd;
-    unsigned int buff_count=0;
+    volatile unsigned int buff_count;
     u_char *memaddr;
 
     fd = shm_open(SHM_FNAME, O_RDWR|O_CREAT, 0664);
@@ -43,8 +43,10 @@ int main()
     signal(SIGINT, inter_handler);
     while (run_var)
     { 
-        read(STDIN_FILENO, memaddr+(buff_count*XFER_SIZE), XFER_SIZE);
-        buff_count = (buff_count+1)%BUFFDEPTH;
+        for (buff_count=0; buff_count<BUFFDEPTH; buff_count++)
+        {
+            read(STDIN_FILENO, memaddr+(buff_count*XFER_SIZE), XFER_SIZE);
+        }
     }
     printf ("Signal caught, exiting the stdout2shmbuf code \n");
     munmap(memaddr, BUFFDEPTH*XFER_SIZE);
